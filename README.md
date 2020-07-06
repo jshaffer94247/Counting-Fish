@@ -1,4 +1,4 @@
-# Leveraing Deep Learning to Facilitate Salmon Counting
+# Leveraging Deep Learning to Facilitate Salmon Counting
 
 ### Contents
 - [Executive Summary](#Executive-Summary)
