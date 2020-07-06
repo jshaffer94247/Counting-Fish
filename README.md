@@ -1,4 +1,4 @@
-# Leveraging Deep Learning to Facilitate Salmon Counting
+# Leveragin Deep Learning to Facilitate Salmon Counting
 
 ### Contents
 - [Executive Summary](#Executive-Summary)
@@ -18,7 +18,7 @@ Custom trained models (e.g. YOLO v5) using images from fish ladders proved that 
 
 ## Introduction
 
-Salmon life cycles follow a predictable pattern: hatch in fresh water, migrate to the ocean for the majority of their lives, and then migrate back to their original fresh water homes before they spawn and then die. The time spent in fresh water and ocean salt water depend on the species.
+Salmon life cycles follow a predictable pattern: hatch in fresh water, migrate to the ocean for the majority of their lives, and then migrate back to their original fresh water hatch sites before they spawn and then die. The time spent in fresh water and ocean salt water depends on the species.
 
 Salmon populations in the waters of Puget Sound are estimated each year when a mature portion of the salmon migrate back from the ocean to fresh water to spawn. In many areas, this pathway is partially obstructed by boat locks (Seattle), or hydroelectric dams (Bonneville) and the salmon travel through carefully built fish ladders on this upstream journey. As they pass through the ladders, viewing windows allow them to be seen by both tourists and biologists, and human viewers are still the primary way to count the fish.
 
@@ -33,12 +33,22 @@ The salmon counting task is trivial when few are in the ladder; the task is far 
 
 ## Data-Collection 
 
-Over the course of 2 weeks in June 2020, an internet search found only 168 usable images of fish travelling past viewing windows. Of these, the majority were taken by tourists and often feature the silhouettes of children in front of the glass. Images of official viewing windows were very difficult to find for 2 reasons: 1) they are probably not particularly interesting to most people and 2) for security reasons, the fish cam at the Bonneville Dam (Willamette Falls) has been disabled. 
+Over the course of 2 weeks in June 2020, an internet search found 168 usable images of fish traveling past viewing windows. Of these, the majority were taken by tourists and often feature the silhouettes of children in front of the glass. Images of official viewing windows were very difficult to find, in part because 1) they are probably not particularly interesting to most people and 2) for security reasons, the fish cam at the Bonneville Dam (Willamette Falls) has been disabled. 
 
 With the use of image augmentation, the original collection of 168 images was expanded by including horizontal flip, random adjustments to exposure (+/- 25%), and random changes to rotation (+/- 15%). The final 504 images contained 725 annotated fish (averaging 4.3 per image), and included 2 null examples of viewing windows with no fish.
 
+For image classification, images need to contain a limited number of objects (preferably just one) and a machine learning algorithm will attempt to name the object in the image. All that is needed is an image and a single label, e.g. "cat" or "dog".
+
+Object detection refers to the case where there are multiple instances of an object or when there are a variety of other objects also in the image. In this situation, the image also needs to be labelled to show where each object is located. Most algorithms use a bounding box for this.
+
+The original 168 fish images were manually labeled using the free tool "labelImg" (see https://pypi.org/project/labelImg/) to draw the bounding boxes. Free tools from roboflow.ai (see https://roboflow.ai/) were used to perform the image augmentation. Leveraging the roboflow tools provided several additional benefits: the bounding boxes were automatically adjusted for images that were randomly rotated, and the images and annotations could be quickly exported in multiple formats for use in a variety of models. 
+
 
 ## Deep-Learning-Models 
+
+"You Only Look Once". YOLO is a popular object detection machine learning model introduced in 2015 by a group of researchers at the University of Washington. Rather than pass an image classifier multiple times over an image to see if there was, say, a dog at the upper left, or maybe at the upper right, this new approach replaced the final layers of an image classifier with additional convolutional layers that allowed it to find all instances in one pass. The immediate improvement in speed was a major leap forward for computer vision and object detection. Since the original paper, the model has been improved several times with Version 5 being released in June 2020.
+
+Given the popularity, speed, and accuracy of YOLO, the YOLO v5 model flow available through roboflow.ai was an obvious choice. Earlier YOLO versions have keras and tensorflow implementations and can be run on a variety of hardware. At this time, only a PyTorch version of YOLO v5 has been built. This version leverages the computational speed and efficiency of a GPU for excellent results, and there are a number of examples available in blog posts and in github. For this project, the Google Colaboratory template from roboflow.ai was used. This template configures the environment and builds the model, so a simple customization consists of uploading a new training set and selecting the number of epochs for training. Once trained, the confidence threshold can be adjusted before making predictions.  
 
 
 
@@ -50,7 +60,6 @@ With the use of image augmentation, the original collection of 168 images was ex
 
 ## References
 
-
 ### Salmon, salmon counting, and salmon fishing policies
  - https://www.nps.gov/olym/learn/nature/the-salmon-life-cycle.htm 
  - https://youtu.be/zoHpE5scs2I
@@ -61,6 +70,9 @@ With the use of image augmentation, the original collection of 168 images was ex
 
 ### Machine learning
 
-
-
+ - https://pypi.org/project/labelImg/
+ - https://roboflow.ai/
+ - https://arxiv.org/abs/1506.02640
+ - https://towardsdatascience.com/how-to-train-a-custom-object-detection-model-with-yolo-v5-917e9ce13208
+ 
 [Return to Table of Contents](#Contents)
