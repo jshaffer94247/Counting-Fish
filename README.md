@@ -26,11 +26,6 @@ Once tallied, the estimated population for each species determines sport fishing
 
 The salmon counting task is trivial when few are in the ladder; the task is far more difficult when many are returning at once. As a result, some locations estimate the full population by counting for a set period of time each day and comparing  to historical data. In other locations, 24/7 video recording enables biologists to review footage and tally the counts later; weekend tallies can take staff multiple days to catch up on counts.
 
-
-[Return to Table of Contents](#Contents)
-
-
-
 ## Data-Collection 
 
 Over the course of 2 weeks in June 2020, an internet search found 168 usable images of fish traveling past viewing windows. Of these, the majority were taken by tourists and often feature the silhouettes of children in front of the glass. Images of official viewing windows were very difficult to find, in part because 1) they are probably not particularly interesting to most people and 2) for security reasons, the fish cam at the Bonneville Dam (Willamette Falls) has been disabled. 
@@ -43,18 +38,23 @@ Object detection refers to the case where there are multiple instances of an obj
 
 The original 168 fish images were manually labeled using the free tool "labelImg" (see https://pypi.org/project/labelImg/) to draw the bounding boxes. Free tools from roboflow.ai (see https://roboflow.ai/) were used to perform the image augmentation. Leveraging the roboflow tools provided several additional benefits: the bounding boxes were automatically adjusted for images that were randomly rotated, and the images and annotations could be quickly exported in multiple formats for use in a variety of models. 
 
-
 ## Deep-Learning-Models 
 
 "You Only Look Once". YOLO is a popular object detection machine learning model introduced in 2015 by a group of researchers at the University of Washington. Rather than pass an image classifier multiple times over an image to see if there was, say, a dog at the upper left, or maybe at the upper right, this new approach replaced the final layers of an image classifier with additional convolutional layers that allowed it to find all instances in one pass. The immediate improvement in speed was a major leap forward for computer vision and object detection. Since the original paper, the model has been improved several times with Version 5 being released in June 2020.
 
 Given the popularity, speed, and accuracy of YOLO, the YOLO v5 model flow available through roboflow.ai was an obvious choice. Earlier YOLO versions have keras and tensorflow implementations and can be run on a variety of hardware. At this time, only a PyTorch version of YOLO v5 has been built. This version leverages the computational speed and efficiency of a GPU for excellent results, and there are a number of examples available in blog posts and in github. For this project, the Google Colaboratory template from roboflow.ai was used. This template configures the environment and builds the model, so a simple customization consists of uploading a new training set and selecting the number of epochs for training. Once trained, the confidence threshold can be adjusted before making predictions.  
 
+For this first model, it became apparent that labeling the fish by species was going to be highly problematic. First, identification is a challenge. Sport fishermen are discouraged from identifying fish by side view alone as this can be misleading; they are instead instructed to observe inside the mouth and to look at the color of the gum line. In cloudy, poorly lit conditions, other features such as silver highlights on the tail or where the black spots are located are very difficult to see. Second, training a model to recognize fish by species requires properly labeled images, and there were no fish experts working on this project. In lieu of counting by species, the project was scaled back to count them all as 'fish'.
+
 
 
 ## Conclusions
 
+Based on the results from YOLO v5, salmon counting by object detection is definitely possible, and there also remain several challenges to be solved. These challenges include:
 
+ - Viewing windows with excellent lighting are required
+ - Viewing window height and width are not critical, but the depth needs to be carefully selected to reduce the number of fish that can obscure other fish
+ - Correct species labels are required for training a model to separate coho from chinook
 
 
 
@@ -67,6 +67,7 @@ Given the popularity, speed, and accuracy of YOLO, the YOLO v5 model flow availa
  - https://wdfw.wa.gov/news/washingtons-salmon-seasons-tentatively-set-2020-21
  - http://pweb.crohms.org/tmt/documents/fpp/2020/final/FPP20_02_BON.pdf
  - https://idfg.idaho.gov/fish/chinook/dam-counts
+ - http://www.eregulations.com/washington/fishing/salmon-identification/
 
 ### Machine learning
 
