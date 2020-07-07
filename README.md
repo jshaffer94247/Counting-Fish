@@ -86,14 +86,14 @@ Notes:
  2. Humorous finds: This phantom floor fish is reminiscent of the light-dark patterns of the Viola-Jones algorithm, possibly providing a clue to what may be happening. A change in lighting may result in model improvements. Note the careful arrangement of can lights in the Bonneville viewing window shown previously.
  3. Challenges: Height and width of window are not issues, but the depth of the tank is a problem.
 
-In terms of model metrics, the graphs below show the results of 100 training epochs (blue) and progress on 1000 training epochs (orange). In both cases, the model stopped making significant improvements before all training epochs were completed. 
+In terms of model metrics, the graphs below show the results of 100 training epochs (blue) and progress on 1000 training epochs (orange). In the 1000 epoch case, the model stopped making significant improvements before all training epochs were completed. 
 *Note: as of July 2020, YOLO v5 does not have the ability to save the best model.*
 
 **Model Metrics**
 
 |Precision|Recall|mAP 0.5|
 |---|---|---|
-|<img src="./assets/metric_precision.png" height="100" />|<img src="./assets/metric_recall.png" height="100" />|<img src="./assets/metric_mAP.png" height="100" />|
+|<img src="./assets/metric_precision.png" width="200" />|<img src="./assets/metric_recall.png" width="200" />|<img src="./assets/metric_mAP.png" width="200" />|
 |Precision is the accuracy of the positive predictions (TP / TP+FP) or "If you say it's a fish, what percentage of the time is it really a fish?"|Recall is the true positive rate (TP / TP+FN) or "If there's a fish in there, what percentage of the time do you find it?"| mAP_0.5 See longer text description. |
 
 For object detection, precision and recall are similar to their definitions in other types of machine learning. However, there is an additional consideration here, best illustrated with an example. Let's say the image has a single fish, and the model finds a single fish but draws the box on the floor, would we want to call that a success? Or, what if it draws the box around only the head of the fish but not the body? Do we want to give it partial credit? The solution to this dilemma is something like partial credit, where the amount of overlap between the box drawn and the expected box determines the mAP. The most common metric here is "50% overlap", or mAP@.5. So, if we count the boxes where the model's box overlaps the label box by at least 50%, this model is providing correct answers in roughly 50% of the cases. 
