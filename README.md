@@ -13,11 +13,11 @@
 
 ## Executive Summary
 
-In the Pacific Northwest, salmon are vital in both commerce and in the marine ecosystem, and population estimates are key factors in many policy decisions. Current methods require trained biologists to observe the fish passing a viewing window and manually record the fish count on a daily basis.
+In the Pacific Northwest, salmon are vital to commerce and to the marine ecosystem, and fish population estimates are key factors in many policy decisions. Current methods require trained biologists to observe the fish passing a viewing window and manually record the fish count on a daily basis.
 
-This project explored the possibility of using machine learning methods of object detection and classification to support these efforts, possibly enabling the collection of data in more locations and over longer time periods.
+This project explored the possibility of using machine learning methods of object detection and classification to support these efforts, potentially enabling the collection of data in more locations and over longer time periods.
 
-Custom trained models (e.g. YOLO v5) using images from fish ladders proved that accurate fish detection is promising but non-trivial, counting fish in a still image does not solve the problem of counting fish in video, and that classifying fish by species requires excellent viewing conditions.
+Custom trained models (e.g. YOLO v5) using images from fish ladders showed that accurate fish detection is promising but non-trivial, counting fish in a still image does not solve the problem of counting fish in video, and that classifying fish by species requires excellent viewing conditions.
 
 ## Introduction
 
