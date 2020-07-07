@@ -27,7 +27,7 @@ Salmon populations in the waters of Puget Sound are estimated each year when a m
 
 |Fish ladder| Bonneville Dam public window| Bonneville counting window (non-public)|
 |---|---|---|
-|<img src="./assets/fish_ladder.png" alt="fish ladder explanation at https: //www youtube com/watch?v=sabk7Khq0kQ" width='300' />| <img src="./assets/fish_143.jpg" alt="man viewing fish through underwater viewing window" width="200"/>|<img src="http://www.oceanlight.com/stock-photo/bonneville-dam-salmon-count-photo-19368-548507.jpg" alt="fisheries biologist counting salmon" height="100" width='200' />|
+|<img src="./assets/fish_ladder.png" alt="fish ladder explanation at https: //www youtube com/watch?v=sabk7Khq0kQ" width='300' />| <img src="./assets/fish_143.jpg" alt="man viewing fish through underwater viewing window" width="200"/>|<img src="http://www.oceanlight.com/stock-photo/bonneville-dam-salmon-count-photo-19368-548507.jpg" alt="fisheries biologist counting salmon"  height="200" />|
 |Watch at https: //www youtube com/watch?v=sabk7Khq0kQ||Photo: (c) Phillip Colla OceanLight.com|
 
 Once tallied, the estimated population for each species determines sport fishing limits such as the number of fish per day and the length of the fishing season. This data is also used to make decisions in the operation of salmon fisheries, commercial fishing, restaurants, and tourism.
@@ -70,6 +70,7 @@ For this first model, it became apparent that labeling the fish by species was g
 |Sockeye| Chinook | Coho | What's this?|
 |---|---|---|---|
 |<img src="http://www.eregulations.com/wp-content/uploads/2020/06/Marine_-_Sockeye_Ocean_1.3_-_brightness.jpg" alt="chinook" width="200"/>|<img src="http://www.eregulations.com/wp-content/uploads/2020/06/Marine_-_Chinook_Ocean_1.3_brightness.jpg" alt="chinook" width="200"/>|<img src="http://www.eregulations.com/wp-content/uploads/2020/06/Marine_-_Coho_Ocean_1.3_brightness.jpg" alt="coho" width="200"/>|<img src="./assets/fish_147_mystery.png" alt="https://www.ifish.net/gallery/data/1156/fishimage310.jpg" width="200"/>|
+
 All images (and images of other salmon species) are from http://www.eregulations.com/washington/fishing/salmon-identification/ .
 
 Scaling back to just finding a generically labeled "fish", and scaling up to cloud based GPU resources with the latest YOLO v5 model, the results were mixed and not ready to replace a fisheries biologist.
