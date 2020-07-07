@@ -34,14 +34,14 @@ Once tallied, the estimated population for each species determines sport fishing
 
 |Columbia River Chinook Season|Ballard Locks 2020 Sockeye Counts|
 |---|---|
-|<img src="./assets/chinook_2020_Columbia.png" height='20'/>|<img src="./assets/ballard_locks_sockeye_counts_7520.jpg" height='20'/>|
+|<img src="./assets/chinook_2020_Columbia.png" height='100'/>|<img src="./assets/ballard_locks_sockeye_counts_7520.jpg" height='100'/>|
 |News source: https://wdfw.wa.gov/news/summer-chinook-salmon-fishing-open-july-much-columbia-river | Updated count: https://wdfw.wa.gov/sites/default/files/styles/page_body_full_width/public/2020-07/ballard_locks_sockeye_counts_7520.jpg?itok=Q8rJ2m5S"|
 
 
 The salmon counting task is trivial when few are in the ladder; the task is far more difficult when many are returning at once. As a result, some locations estimate the full population by counting for a set period of time each day and comparing  to historical data. In other locations, 24/7 video recording enables biologists to review footage and tally the counts later; weekend tallies can take staff multiple days to catch up on counts. Interested individuals can sign up for daily notifications on the latest counts.
 
 
-## Data-Collection 
+## Data Collection 
 
 Over the course of 2 weeks in June 2020, an internet search found 168 usable images of fish traveling past viewing windows. Of these, the majority were taken by tourists and often feature the silhouettes of children in front of the glass. Images of official viewing windows were very difficult to find, in part because 1) they are probably not particularly interesting to most people and 2) for security reasons, the fish cam at the Bonneville Dam (Willamette Falls) has been disabled. 
 
