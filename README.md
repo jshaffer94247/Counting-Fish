@@ -138,3 +138,5 @@ Video counts will require
 Scikit-Learn and TensorFlow by Aurélien Géron (O’Reilly). Second edition. Copyright 2019.
 
 [Return to Table of Contents](#Contents)
+
+[Data Science Portfolio](https://www.jshaffer94247.github.io)
