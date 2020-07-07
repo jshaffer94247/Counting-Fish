@@ -139,4 +139,4 @@ Scikit-Learn and TensorFlow by Aurélien Géron (O’Reilly). Second edition. Co
 
 [Return to Table of Contents](#Contents)
 
-[Data Science Portfolio](https://www.jshaffer94247.github.io)
+[Data Science Portfolio](https://jshaffer94247.github.io/)
