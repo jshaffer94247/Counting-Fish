@@ -4,13 +4,14 @@
 
 ### Contents
 - [Executive Summary](#Executive-Summary)
+- [Folder Structure](#Folder-Structure)
 - [Introduction](#Introduction)
 - [Data Collection](#Data-Collection)
 - [Deep Learning Models](#Deep-Learning-Models)
 - [Conclusions](#Conclusions)
 - [References](#References)
 
-
+---
 ## Executive Summary
 
 In the Pacific Northwest, salmon are vital to commerce and to the marine ecosystem, and fish population estimates are key factors in many policy decisions. Current methods require trained biologists to observe the fish passing a viewing window and manually record the fish count on a daily basis.
@@ -19,6 +20,17 @@ This project explored the possibility of using machine learning methods of objec
 
 Custom trained models (e.g. YOLO v5) using images from fish ladders showed that accurate fish detection is promising but non-trivial, counting fish in a still image does not solve the problem of counting fish in video, and that classifying fish by species requires excellent viewing conditions.
 
+## Folder Structure
+
+```
+|- README.md                        (this file)
+|- assets                           (images used in README.md)
+|- code                             (Jupyter notebooks)
+|    |- 01_Finding_Images.ipynb     
+|    |- 02_Model_Training_YOLOv5
+|    |- 03_Model_Inference_YOLOv5
+| - [Deep_Learning_Counting_Fish.pdf](#./Deep_Learning_Counting_Fish.pdf)         (presentation slides)
+```
 ## Introduction
 
 Salmon life cycles follow a predictable pattern: hatch in fresh water, migrate to the ocean for the majority of their lives, and then migrate back to their original fresh water hatch sites before they spawn and then die. The time spent in fresh water and ocean salt water depends on the species.
@@ -43,6 +55,8 @@ The salmon counting task is trivial when few are in the ladder; the task is far 
 
 ## Data Collection
 
+### Phase 1 - web scraping
+
 Over the course of 2 weeks in June 2020, an internet search found 168 usable images of fish traveling past viewing windows. Of these, the majority were taken by tourists and often feature the silhouettes of children in front of the glass. Images of official viewing windows were very difficult to find, in part because 1) they are probably not particularly interesting to most people and 2) for security reasons, the fish cam at the Bonneville Dam (Willamette Falls) has been disabled.
 
 With the use of image augmentation, the original collection of 168 images was expanded by including horizontal flip, random adjustments to exposure (+/- 25%), and random changes to rotation (+/- 15%). The final 504 images contained 725 annotated fish (averaging 4.3 per image), and included 2 null examples of viewing windows with no fish.
@@ -57,6 +71,15 @@ Object detection refers to the case where there are multiple instances of an obj
 
 The original 168 fish images were manually labeled using the free tool "labelImg" (see https://pypi.org/project/labelImg/) to draw the bounding boxes. Free tools from roboflow.ai (see https://roboflow.ai/) were used to perform the image augmentation. Leveraging the roboflow tools provided several additional benefits: the bounding boxes were automatically adjusted for images that were randomly rotated, and the images and annotations could be quickly exported in multiple formats for use in a variety of models.
 
+Due to the poor quality of the images, a single class of "fish" was used.
+
+### Phase 2 - images extracted from video
+
+After building the first model, new images were obtained from one of the fish counting sites in Washington. With these new images, it was possible to create 3 classes: 
+ - 'adipose' for fish having an intact and visible adipose fin
+ - 'no_adipose' for fish having no adipose fin
+ - 'unknown' for fish only partially in the viewing window, or whose adipose fin region is obscured by another fish or artifact
+
 ## Deep Learning Models
 
 **YOLO v5**
@@ -64,6 +87,8 @@ The original 168 fish images were manually labeled using the free tool "labelImg
 "You Only Look Once". YOLO is a popular object detection machine learning model introduced in 2015 by a group of researchers at the University of Washington. Rather than pass an image classifier multiple times over an image to see if there was, say, a dog at the upper left, or maybe at the upper right, this new approach replaced the final layers of an image classifier with additional convolutional layers that allowed it to find all instances in one pass. The immediate improvement in speed was a major leap forward for computer vision and object detection. Since the original paper, the model has been improved several times with Version 5 being released in June 2020.
 
 Given the popularity, speed, and accuracy of YOLO, the YOLO v5 model flow available through roboflow.ai was an obvious choice. Earlier YOLO versions have keras and tensorflow implementations and can be run on a variety of hardware. At this time, only a PyTorch version of YOLO v5 has been built. This version leverages the computational speed and efficiency of a GPU for excellent results, and there are a number of examples available in blog posts and in github. For this project, the Google Colaboratory template from roboflow.ai was used. This template configures the environment and builds the model, so a simple customization consists of uploading a new training set and selecting the number of epochs for training. Once trained, the confidence threshold can be adjusted before making predictions.  
+
+### Phase 1 - web scraped images
 
 For this first model, it became apparent that labeling the fish by species was going to be highly problematic. First, identification is a challenge. Sport fishermen are discouraged from identifying fish by side view alone as this can be misleading; they are instead instructed to observe inside the mouth and to look at the color of the gum line. In cloudy, poorly lit conditions, other features such as silver highlights on the tail or where the black spots are located are very difficult to see. Second, training a model to recognize fish by species requires properly labeled images, and there were no fish experts working on this project. In lieu of counting by species, the project was scaled back to count them all as 'fish'. As a first pass, even this highlighted plenty of issues.
 
@@ -89,6 +114,14 @@ Notes:
 
 In terms of model metrics, the graphs below show the results of 100 training epochs (blue) and progress on 1000 training epochs (orange). In the 1000 epoch case, the model stopped making significant improvements before all training epochs were completed.
 *Note: as of July 2020, YOLO v5 does not have the ability to save the best model.*
+
+### Phase 2 - images extracted from video
+
+For the second model, images seemed crystal clear by comparison, so the classes were upgraded to adipose, no_adipose and unknown. For simple images, the model worked very well. It struggled when conditions were crowded and stronger shadows appeared.
+
+|Easy Image|Tricky Image -- extra fish|Tricky Image - missing fish|
+|---|---|---|
+|||
 
 **Model Metrics**
 
@@ -125,6 +158,7 @@ Video counts will require
  - https://wdfw.wa.gov/news/washingtons-salmon-seasons-tentatively-set-2020-21
  - http://pweb.crohms.org/tmt/documents/fpp/2020/final/FPP20_02_BON.pdf
  - https://idfg.idaho.gov/fish/chinook/dam-counts
+ - http://www.cbr.washington.edu/dart/overview
  - http://www.cbr.washington.edu/dart/query/adult_daily
  - http://www.eregulations.com/washington/fishing/salmon-identification/
 
