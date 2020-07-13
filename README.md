@@ -7,13 +7,13 @@
 - [Folder Structure](#Folder-Structure)
 - [Introduction](#Introduction)
 - [Data Collection](#Data-Collection)
- - Phase 1 - web scraped images
- - Phase 2 - images from video
+  - Phase 1 - web scraped images
+  - Phase 2 - images from video
 - [Deep Learning Models](#Deep-Learning-Models)
- - YOLO v5
- - Phase 1 - web scraped images
- - Phase 2 - images from video
- - [Model Metrics](#Model-Metrics)
+  - YOLO v5
+  - Phase 1 - web scraped images
+  - Phase 2 - images from video
+  - [Model Metrics](#Model-Metrics)
 - [Conclusions](#Conclusions)
 - [References](#References)
 
@@ -128,7 +128,9 @@ For the second model, images seemed crystal clear by comparison, so the classes 
 
 |Easy Image|Tricky Image -- extra fish|Tricky Image - missing fish|
 |---|---|---|
-|||
+|<img src="./assets/results_2_fish_1_each.png" height="200" />|<img src="./assets/fish_3_labels_4.png" height="200" />|<img src="./assets/crowded_1.png" height="200" />|
+
+In the example above withe the 'extra' fish label, this problem is easily solved in production by adjusting the threshold to be > 0.40; this would exclude the box with the confidence of 0.42. For now, the threshold on the model is set lower to provide information on where the model needs to be improved.
 
 ### Model Metrics
 
