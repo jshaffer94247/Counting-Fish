@@ -10,7 +10,7 @@
   - Phase 1 - web scraped images
   - Phase 2 - images from video
 - [Deep Learning Models](#Deep-Learning-Models)
-  - YOLO v5
+  - [YOLO v5](#YOLO-v5)
   - Phase 1 - web scraped images
   - Phase 2 - images from video
   - [Model Metrics](#Model-Metrics)
@@ -57,7 +57,7 @@ Once tallied, the estimated population for each species determines sport fishing
 |News source: https://wdfw.wa.gov/news/summer-chinook-salmon-fishing-open-july-much-columbia-river | Updated count: https://wdfw.wa.gov/fishing/reports/counts/lake-washington#sockeye|
 
 
-The salmon counting task is trivial when few are in the ladder; the task is far more difficult when many are returning at once. As a result, some locations estimate the full population by counting for a set period of time each day and comparing  to historical data. In other locations, 24/7 video recording enables biologists to review footage and tally the counts later; weekend tallies can take staff multiple days to catch up on counts. Interested individuals can sign up for daily notifications on the latest counts.
+The salmon counting task is easier when few are in the ladder; the task is more difficult when many are returning at once. Some locations estimate the full population by counting for a set period of time each day and comparing to historical data. In other locations, 24/7 video recording enables biologists to review footage and tally the counts later; weekend tallies can take staff multiple days to catch up on counts. Interested individuals can sign up for daily notifications on the latest counts.
 
 
 ## Data Collection
@@ -82,7 +82,7 @@ Due to the poor quality of the images, a single class of "fish" was used.
 
 ### Phase 2 - images extracted from video
 
-After building the first model, new images were obtained from one of the fish counting sites in Washington. With these new images, it was possible to create 3 classes: 
+After building the first model, images or video were requested from one of the fish counting sites in Washington. This request was granted with a video segment of fish in one of the ladders. With these new images, but without fish identificaiton expertise, it was possible to create 3 classes: 
  - 'adipose' for fish having an intact and visible adipose fin
  - 'no_adipose' for fish having no adipose fin
  - 'unknown' for fish only partially in the viewing window, or whose adipose fin region is obscured by another fish or artifact
