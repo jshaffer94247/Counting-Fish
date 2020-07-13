@@ -7,7 +7,13 @@
 - [Folder Structure](#Folder-Structure)
 - [Introduction](#Introduction)
 - [Data Collection](#Data-Collection)
+ - Phase 1 - web scraped images
+ - Phase 2 - images from video
 - [Deep Learning Models](#Deep-Learning-Models)
+ - YOLO v5
+ - Phase 1 - web scraped images
+ - Phase 2 - images from video
+ - [Model Metrics](#Model-Metrics)
 - [Conclusions](#Conclusions)
 - [References](#References)
 
@@ -23,13 +29,14 @@ Custom trained models (e.g. YOLO v5) using images from fish ladders showed that 
 ## Folder Structure
 
 ```
-|- README.md                        (this file)
-|- assets                           (images used in README.md)
-|- code                             (Jupyter notebooks)
+|- README.md                              (this file)
+|- assets                                 (images used in README.md)
+|- code                                   (Jupyter notebooks)
 |    |- 01_Finding_Images.ipynb     
-|    |- 02_Model_Training_YOLOv5
-|    |- 03_Model_Inference_YOLOv5
-| - [Deep_Learning_Counting_Fish.pdf](#./Deep_Learning_Counting_Fish.pdf)         (presentation slides)
+|    |- 02_Model_Training_YOLOv5          (Google Colab notebook)
+|    |- 03_Model_Inference_YOLOv5         (Google Colab notebook)
+| - presentation
+     |- Deep_Learning_Counting_Fish.pdf   (presentation slides)
 ```
 ## Introduction
 
@@ -82,7 +89,7 @@ After building the first model, new images were obtained from one of the fish co
 
 ## Deep Learning Models
 
-**YOLO v5**
+### YOLO v5
 
 "You Only Look Once". YOLO is a popular object detection machine learning model introduced in 2015 by a group of researchers at the University of Washington. Rather than pass an image classifier multiple times over an image to see if there was, say, a dog at the upper left, or maybe at the upper right, this new approach replaced the final layers of an image classifier with additional convolutional layers that allowed it to find all instances in one pass. The immediate improvement in speed was a major leap forward for computer vision and object detection. Since the original paper, the model has been improved several times with Version 5 being released in June 2020.
 
@@ -123,11 +130,12 @@ For the second model, images seemed crystal clear by comparison, so the classes 
 |---|---|---|
 |||
 
-**Model Metrics**
+### Model Metrics
 
-|Precision|Recall|mAP 0.5|
-|---|---|---|
-|<img src="./assets/metric_precision.png" width="200" />|<img src="./assets/metric_recall.png" width="200" />|<img src="./assets/metric_mAP.png" width="200" />|
+|Phase|Precision|Recall|mAP 0.5|
+|---|---|---|---|
+|web-scraped images - class 'fish'|<img src="./assets/metric_precision.png" height="200" />|<img src="./assets/metric_recall.png" height="200" />|<img src="./assets/metric_mAP.png" height="200" />|
+|images from video - 3 classes|<img src="./assets/RIS_500epoch_precision.png" height="200" />|<img src="./assets/RIS_500epoch_recall.png" height="200" />|<img src="./assets/RIS_500epoch_mAP.png" height="200" />|
 |Precision is the accuracy of the positive predictions (TP / TP+FP) or "If you say it's a fish, what percentage of the time is it really a fish?"|Recall is the true positive rate (TP / TP+FN) or "If there's a fish in there, what percentage of the time do you find it?"| mAP_0.5 See longer text description. |
 
 For object detection, precision and recall are similar to their definitions in other types of machine learning. However, there is an additional consideration here, best illustrated with an example. Let's say the image has a single fish, and the model finds a single fish but draws the box on the floor. Would we want to call that a success? Or, what if it draws the box around only the head of the fish but not the body? Do we want to give it partial credit? The solution to this dilemma is something like partial credit, where the amount of overlap between the box drawn and the expected box determines the mAP (mean average precision). The most common metric here is "50% overlap", or mAP@.5. So, if we count the boxes where the model's box overlaps the label box by at least 50%, this model is providing correct answers in roughly 50% of the cases.
@@ -147,6 +155,10 @@ Video counts will require
  - Ability to track an individual fish regardless of forward or backward movement
  - Only a single count irrespective of the amount of time a fish remains in the viewing window
 
+## Acknowledgments
+
+- Special thanks to Team Roboflow.ai
+- Special thanks to the staff at Chelan County PUD
 
 
 ## References
@@ -161,6 +173,7 @@ Video counts will require
  - http://www.cbr.washington.edu/dart/overview
  - http://www.cbr.washington.edu/dart/query/adult_daily
  - http://www.eregulations.com/washington/fishing/salmon-identification/
+ - https://www.chelanpud.org/environment/fish-and-wildlife/fish-counts
 
 ### Machine learning
 
@@ -173,5 +186,10 @@ Video counts will require
 Scikit-Learn and TensorFlow by Aurélien Géron (O’Reilly). Second edition. Copyright 2019.
 
 [Return to Table of Contents](#Contents)
+
+
+[Presentation Materials (slides)](presentation/Deep_Learning_Counting_Fish.pdf)  
+
+---
 
 [Data Science Portfolio](https://jshaffer94247.github.io/)
