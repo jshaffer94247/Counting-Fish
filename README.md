@@ -40,9 +40,9 @@ Custom trained models (e.g. YOLO v5) using images from fish ladders showed that 
 ```
 ## Introduction
 
-Salmon life cycles follow a predictable pattern: hatch in fresh water, migrate to the ocean for the majority of their lives, and then migrate back to their original fresh water hatch sites before they spawn and then die. The time spent in fresh water and ocean salt water depends on the species.
+Salmon life cycles follow a predictable pattern: hatch in freshwater, migrate to the ocean for the majority of their lives, and then migrate back to their original freshwater hatch sites before they spawn and then die. The time spent in freshwater and ocean salt water depends on the species.
 
-Salmon populations in the waters of Puget Sound are estimated each year when a mature portion of the salmon migrate back from the ocean to fresh water to spawn. In many areas, this pathway is partially obstructed by boat locks (Seattle), or hydroelectric dams (Bonneville) and the salmon travel through carefully built fish ladders on this upstream journey. As they pass through the ladders, viewing windows allow them to be seen by both tourists and biologists, and human viewers are still the primary way to count the fish.
+Salmon populations in the waters of Puget Sound are estimated each year when a mature portion of the salmon migrate back from the ocean to freshwater to spawn. In many areas, this pathway is partially obstructed by boat locks (Seattle), or hydroelectric dams (Bonneville) and the salmon travel through carefully built fish ladders on this upstream journey. As they pass through the ladders, viewing windows allow them to be seen by both tourists and biologists, and human viewers are still the primary way to count the fish.
 
 |Fish ladder| Bonneville Dam public window| Bonneville counting window (non-public)|
 |---|---|---|
@@ -82,7 +82,7 @@ Due to the poor quality of the images, a single class of "fish" was used.
 
 ### Phase 2 - images extracted from video
 
-After building the first model, images or video were requested from one of the fish counting sites in Washington. This request was granted with a video segment of fish in one of the ladders. With these new images, but without fish identificaiton expertise, it was possible to create 3 classes: 
+After building the first model, images or video were requested from one of the fish counting sites in Washington. This request was granted with a video segment of fish in one of the ladders. With these new images, but without fish identification expertise, it was possible to create 3 classes:
  - 'adipose' for fish having an intact and visible adipose fin
  - 'no_adipose' for fish having no adipose fin
  - 'unknown' for fish only partially in the viewing window, or whose adipose fin region is obscured by another fish or artifact
@@ -130,7 +130,7 @@ For the second model, images seemed crystal clear by comparison, so the classes 
 |---|---|---|
 |<img src="./assets/results_2_fish_1_each.png" height="200" />|<img src="./assets/fish_3_labels_4.png" height="200" />|<img src="./assets/crowded_1.png" height="200" />|
 
-In the example above withe the 'extra' fish label, this problem is easily solved in production by adjusting the threshold to be > 0.40; this would exclude the box with the confidence of 0.42. For now, the threshold on the model is set lower to provide information on where the model needs to be improved.
+In the example above with the 'extra' fish label, this problem is easily solved in production by adjusting the threshold to be > 0.40; this would exclude the box with the confidence of 0.42. For now, the threshold on the model is set lower to provide information on where the model needs to be improved.
 
 ### Model Metrics
 
