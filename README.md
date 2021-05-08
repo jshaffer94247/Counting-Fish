@@ -1,6 +1,7 @@
 # Leveraging Deep Learning to Facilitate Fish Counts
 
 #### Jamie Shaffer, July 2020
+*Updated code May 2021*
 
 ### Contents
 - [Executive Summary](#Executive-Summary)
@@ -16,6 +17,8 @@
   - [Model Metrics](#Model-Metrics)
 - [Conclusions](#Conclusions)
 - [References](#References)
+
+Link to my article on Medium.com ["Applying Deep Learning to Environmental Issues"](https://medium.com/@jshaffer94247_86066/applying-deep-learning-to-environmental-issues-73a861f3a4ec?sk=6dbcf278678241cffd215637e2acf658) published August 2020
 
 ---
 ## Executive Summary
